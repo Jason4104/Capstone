@@ -1,0 +1,42 @@
+---
+title: "Capstone Project: Predicting the next word"
+author: "Jason Kang"
+date: "5/30/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+This presentation is created for the final project of the Data Science Capstone course. 
+
+For this final project, a model that can predict words in a text is created, and a shiny app user-interface is made based on this model to allow people to predict the most commonly used word following a target word. 
+
+[Here](https://jasonkang4104.shinyapps.io/capstone/?_ga=2.16057334.1988399440.1590858968-1429497300.1590529233) is the link to the ShinyApp page.
+[Here](https://github.com/Jason4104/Capstone) is the link to the Github for files that display the source codes. 
+
+## Obtaining and Cleaning the data
+
+**Data is first obtained, and then cleaned prior to any exploratory analysis and prediction model-building**
+- 3 samples were randomly selected from a subset of data collected from blogs, twitter and news, then they are merged into a single sample set. 
+- After this, data cleaning procedures are conducted. This includes converting all text into lower case, cleaning empty space, and removing numbers as well as punctuations.
+- Then, a set of correspnding n-grams are created.
+- The count tables for each term is obtained from the N-gram files, and they are sorted according to their frequency of appearance, and finally comparessed into RData files. 
+
+## Predictive Text Model
+
+The predictive model is build from the sampled created earlier, which includes around 800,000 lines of texts from a variety of soruces. 
+
+The sample data is tokenized and cleaned, and a algorithm tries to detect a match between the longest n-gram (4-gram) to the shortest 2-gram. Basically, 4-gram is first used, then trigram, then 2-gram or bigram.The predictive next word is considered using the longest, and the most frequently mathced n-gram. 
+
+## Shiny Application
+```{r}
+library(knitr)
+```
+
+```{r figurename, echo=FALSE, fig.cap="Shiny Application", out.width = '90%'}
+knitr::include_graphics("graph.png")
+```
